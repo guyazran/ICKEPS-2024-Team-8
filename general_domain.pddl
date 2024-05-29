@@ -15,7 +15,7 @@
         (utype ?u - unit ?u2 - unit_type)
         (btype ?b - building ?b2 - building_type)
         (upgrades ?b - building_type ?b2 - building_type)
-        (upgradable ?b - building_type ?l -level)
+        (upgradable ?b - building_type ?l - level)
         (next ?o - entity ?o2 - entity)
         (current ?o - entity)
     )
