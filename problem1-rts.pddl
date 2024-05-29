@@ -13,16 +13,22 @@
         worker1 - unit
         infantry1 - unit
 
+        level1 - level_type
+
         null_unit - unit
         null_building - building
     )
     (:init
         (utype worker1, worker)
         (utype infantry1, light_infantry)
+
         (btype base1, base)
         (btype barracks1, barracks)
 
-        (produces base1, worker)
+        (blevel base1, level1)
+        (blevel barracks1, level1)
+
+        (produces base, worker)
         (produces barracks, light_infantry)
 
         (next_unit null_unit, worker1)

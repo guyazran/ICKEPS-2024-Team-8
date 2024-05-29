@@ -17,6 +17,8 @@
         infantry1 - unit
         tank1 - unit
 
+        level1 - level_type
+
         null_unit - unit
         null_building - building
     )
@@ -36,6 +38,10 @@
 
         (next_building null_building, barracks1)
         (next_building null_building, tank_factory1)
+
+        (blevel base1, level1)
+        (blevel barracks1, level1)
+        (blevel tank_factory1, level1)
 
         (built base1)
     )
