@@ -77,7 +77,7 @@
     		(btype ?b ?bt)
     		(btype ?t ?tt)
     		(upgrades ?bt ?tt)
-    		(upgradable ?b ?l2)
+    		(upgradable ?bt ?l2)
     		(next ?l ?l2)
     	)
     	:effect (and
