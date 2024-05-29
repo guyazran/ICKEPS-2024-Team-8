@@ -77,7 +77,7 @@
     		(next ?l ?l2)
     	)
     	:effect (and
-    		(level2 ?t ?l2)
+    		(b_level ?b ?l2)
     	)
     )
 )
