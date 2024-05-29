@@ -40,8 +40,12 @@
 
         (next null_unit, worker1)
         (next null_unit, infantry1)
+        (current null_unit worker)
+        (current null_unit light_infantry)
 
         (next null_building, barracks1)
+        (current null_building barracks)
+        (current base1 base)
 
         (next level0, level1)
     )
