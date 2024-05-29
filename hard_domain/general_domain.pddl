@@ -24,7 +24,6 @@
 	     :parameters (?ut - unit_type ?b - building ?b2 - building_type ?u - unit ?u2 - unit ?l - level_type)
 	     :precondition (and
 	         (not (trained ?u))
-	         (b_level ?b level0)
 	         (btype ?b ?b2)
 	         (utype ?u ?ut)
 	         (produces ?ut ?b2 ?l)
