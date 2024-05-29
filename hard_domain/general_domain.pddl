@@ -29,7 +29,7 @@
         (at ?u - entity ?x - loc)
         (power ?b - building)
         (need_power ?b - building)
-        (used_power ?b - building)
+    (used_power ?b - building)
         (next ?l1 ?l2 - level_type)
     )
 
