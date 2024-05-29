@@ -10,6 +10,7 @@
     	(occupied ?u - unit)
     	(trained ?u - unit)
     	(built ?b - building)
+    	(builder ?u - unit_type)
         (produces ?u - unit_type ?b - building_type)
         (utype ?u - unit ?u2 - unit_type)
         (btype ?b - building ?b2 - building_type)
@@ -38,9 +39,10 @@
     )
 
     (:action build_building
-    	:parameters(?u - unit ?b - building ?b2 - building)
+    	:parameters(?u - unit ?u2 - unit_type ?b - building ?b2 - building)
     	:precondition (and
-    		(type ?u WORKER)
+    		(type ?u ?u2)
+    		(builder ?u2)
     		(not (occupied ?u))
     		(not (built ?b))
     		(current ?b2)
