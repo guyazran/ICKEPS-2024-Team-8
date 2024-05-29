@@ -1,4 +1,4 @@
-(define (problem rts1)
+(define (problem rts1_2)
     (:domain rts_game)
     (:objects
         base - building_type
@@ -12,8 +12,28 @@
 
         worker1 - unit
         infantry1 - unit
+
+        loc1 - loc
+        loc2 - loc
+        loc3 - loc
+        loc4 - loc
+        loc5 - loc
+        loc6 - loc
+        loc7 - loc
+        loc8 - loc
+        loc9 - loc
     )
     (:init
+        (soil sand loc1)
+        (soil rock loc2)
+        (soil rock loc3)
+        (soil boggy loc4)
+        (soil rock loc5)
+        (soil rock loc6)
+        (soil sand loc7)
+        (soil rock loc8)
+        (soil rock loc9)
+
         (utype worker1 worker)
         (utype infantry1 light_infantry)
 
@@ -21,6 +41,7 @@
         (btype barracks1 barracks)
 
         (b_level base1 level1)
+        (at base1 loc2)
         (b_level barracks1 level0)
 
         (builder worker)
@@ -31,6 +52,6 @@
     )
 
     (:goal (and
-        (trained infantry1)
+        (trained_2 infantry1)
     ))
 )

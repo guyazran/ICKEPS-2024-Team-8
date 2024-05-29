@@ -1,15 +1,15 @@
 (define (domain rts_game)
-    (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)
+    (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions :equality)
 	(:constants 
 		level0 - level_type
 		level1 - level_type
-		boggy - soil
-		sand - soil
-		rock - soil
+		boggy - soil_type
+		sand - soil_type
+		rock - soil_type
 	)
     (:types 
     	
-        entity entity_type soil loc - object
+        entity entity_type soil_type loc - object
     	building unit level_type - entity
     	building_type unit_type - entity_type
     )
@@ -25,8 +25,11 @@
         (btype ?b - building ?b2 - building_type)
         (upgrades ?b - building_type ?b2 - building_type)
         (upgradable ?b - building_type ?l - level_type)
-        (soil ?t - type ?x - loc)
+        (soil ?t - soil_type ?x - loc)
         (at ?u - entity ?x - loc)
+        (power ?b - building)
+        (need_power ?b - building)
+        (used_power ?b - building)
     )
 
     (:action train_unit
@@ -76,6 +79,15 @@
     		(builder ?ut)
     		(not (occupied ?u))
     		
+    		(not (need_power ?b))
+    		
+    		(forall (?b2 - building)
+				(or 
+					(= ?b2 ?b) 
+					(not (at ?b2 ?x)) 
+				)
+    		)
+    		
     		; building is not built
     		(b_level ?b level0)
     		
@@ -100,6 +112,48 @@
     		(when (trained_1 ?u) (and (not (trained_1 ?u))))
 
     		(at ?b ?x)
+    	)
+    )
+    
+    (:action build_building_w_power
+    	:parameters(?u - unit ?ut - unit_type ?b - building ?b2 - building ?x - loc)
+    	:precondition (and
+    		; worker is available
+    		(utype ?u ?ut)
+    		(builder ?ut)
+    		(not (occupied ?u))
+    		
+    		(need_power ?b)
+    		(power ?b2)
+    		(not (used_power ?b2))
+    		
+    		
+    		; building is not built
+    		(b_level ?b level0)
+    		
+    		(or 
+    			(trained_2 ?u)
+    			(trained_1 ?u)
+			)
+    		
+    		(at ?u ?x)
+    		(soil rock ?x)
+
+    	)
+    	:effect (and
+    		; build building
+    		(not (b_level ?b level0))
+    		(b_level ?b level1)
+    		
+    		; worker is occupied
+    		(occupied ?u)
+    		
+    		(when (trained_2 ?u) (and (not (trained_2 ?u)) (trained_1 ?u)))
+    		(when (trained_1 ?u) (and (not (trained_1 ?u))))
+
+    		(at ?b ?x)
+    		
+    		(used_power ?b2)
     	)
     )
     
