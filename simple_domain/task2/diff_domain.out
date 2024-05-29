@@ -1,0 +1,121 @@
+4,5c4,5
+<         building unit - object
+<         base tech_facility upgradable_building - building
+---
+>         location building unit - object
+>         base tech_facility power_plant upgradable_building - building
+10c10,11
+<     (:predicates  
+---
+>     (:predicates 
+> 	    (NEEDS_POWER ?b - building) 
+15a17,24
+> 		(power_plant_used ?p - power_plant)
+> 		(has_built ?w - worker)
+> 		(is_sand ?l - location)
+> 		(is_rock ?l - location)
+> 		(is_boggy ?l - location)
+> 		(occupied ?l - location)
+> 		(at_loc_building ?l - location ?b - building)
+> 		(at_loc_unit ?l - location ?u - unit)
+18,19c27,62
+< 	(:action build_building
+<     	:parameters(?u - worker ?b - building)
+---
+> 	(:action move
+> 	    :parameters (?u - unit ?from - location ?to - location)
+> 		:precondition (and
+> 		    (trained ?u)
+> 			(not (is_boggy ?from))
+> 			(at_loc_unit ?from ?u)
+> 			(not (working ?u))
+> 		)
+> 		:effect (and
+> 		    (not (at_loc_unit ?from ?u))
+> 			(at_loc_unit ?to ?u)
+> 		)
+> 	)
+> 
+> 	(:action build_unpowered_building
+>     	:parameters(?u - worker ?b - building ?loc - location)
+>     	:precondition (and
+> 		    (trained ?u)
+>     		(not (working ?u))
+>     		(not (built ?b))
+> 			(not (NEEDS_POWER ?b))
+> 			(at_loc_unit ?loc ?u)
+> 			(not (occupied ?loc))
+> 			(is_rock ?loc)
+>     	)
+>     	:effect (and
+>     		(built ?b)
+> 			(level1 ?b)
+>     		(working ?u)
+> 			(occupied ?loc)
+> 			(at_loc_building ?loc ?b)
+>     	)
+>     )
+> 
+> 	(:action build_powered_building
+>     	:parameters(?u - worker ?b - building ?loc - location ?p - power_plant)
+23a67,72
+> 			(NEEDS_POWER ?b)
+> 			(at_loc_unit ?loc ?u)
+> 			(not (occupied ?loc))
+> 			(is_rock ?loc)
+> 			(built ?p)
+> 			(not (power_plant_used ?p))
+28a78,80
+> 			(occupied ?loc)
+> 			(at_loc_building ?loc ?b)
+> 			(power_plant_used ?p)
+35a88
+> 			(not (has_built ?u))
+38a92
+> 			(has_built ?u)
+43c97
+< 	     :parameters (?u - worker)
+---
+> 	     :parameters (?u - worker ?loc - location)
+46c100
+< 	         (exists (?b - base) (built ?b))
+---
+> 	         (exists (?b - base) (and (built ?b) (at_loc_building ?loc ?b)))
+50a105
+> 			(at_loc_unit ?loc ?u)
+54c109
+< 	     :parameters (?u - light_infantry)
+---
+> 	     :parameters (?u - light_infantry ?loc - location)
+57c112
+< 	         (exists (?b - barracks) (built ?b))
+---
+> 	         (exists (?b - barracks) (and (built ?b) (at_loc_building ?loc ?b)))
+61a117
+> 			(at_loc_unit ?loc ?u)
+65c121
+< 	     :parameters (?u - heavy_infantry)
+---
+> 	     :parameters (?u - heavy_infantry ?loc - location)
+71a128
+> 				 (at_loc_building ?loc ?b)
+76a134
+> 			(at_loc_unit ?loc ?u)
+80c138
+< 	     :parameters (?u - tank)
+---
+> 	     :parameters (?u - tank ?loc - location)
+83c141
+< 	         (exists (?b - tank_factory) (built ?b))
+---
+> 	         (exists (?b - tank_factory) (and (built ?b) (at_loc_building ?loc ?b)))
+87a146
+> 			(at_loc_unit ?loc ?u)
+91c150
+< 	     :parameters (?u - siege_tank)
+---
+> 	     :parameters (?u - siege_tank ?loc - location)
+97a157
+> 					(at_loc_building ?loc ?b)
+102a163
+> 			(at_loc_unit ?loc ?u)

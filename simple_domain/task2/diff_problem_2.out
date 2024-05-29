@@ -1,0 +1,23 @@
+8c8
+<         worker_1 - worker
+---
+>         worker_1 worker_2 - worker
+12a13,14
+>         power_plant_1 power_plant_2 - power_plant
+>         r1 r2 r3 r4 r5 r6 s1 b1 - location
+14a17,26
+>         (NEEDS_POWER tech_facility_1)
+>         (NEEDS_POWER tank_factory_1)
+>         (is_rock r1)
+>         (is_rock r2)
+>         (is_rock r3)
+>         (is_rock r4)
+>         (is_rock r5)
+>         (is_rock r6)
+>         (is_sand s1)
+>         (is_boggy b1)
+16a29,30
+>         (occupied r1)
+>         (at_loc_building r1 base_1)
+21a36
+>         (at_loc_unit b1 tank_1)
