@@ -41,12 +41,12 @@
         (produces barracks, light_infantry, level1)
         (produces tank_factory, tank, level1)
 
-        (next_unit null_unit, worker1)
-        (next_unit null_unit, infantry1)
-        (next_unit null_unit, tank1)
+        (next null_unit, worker1)
+        (next null_unit, infantry1)
+        (next null_unit, tank1)
 
-        (next_building null_building, barracks1)
-        (next_building null_building, tank_factory1)
+        (next null_building, barracks1)
+        (next null_building, tank_factory1)
 
         (blevel base1, level1)
         (blevel barracks1, level1)
