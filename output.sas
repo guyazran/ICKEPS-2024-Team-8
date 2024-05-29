@@ -4,7 +4,7 @@ end_version
 begin_metric
 0
 end_metric
-87
+89
 begin_variable
 var0
 0
@@ -611,6 +611,20 @@ begin_variable
 var86
 -1
 2
+Atom b_level(barracks1, level2)
+NegatedAtom b_level(barracks1, level2)
+end_variable
+begin_variable
+var87
+-1
+2
+Atom trained_2(infantry2)
+NegatedAtom trained_2(infantry2)
+end_variable
+begin_variable
+var88
+-1
+2
 Atom trained_2(infantry1)
 NegatedAtom trained_2(infantry1)
 end_variable
@@ -703,14 +717,17 @@ begin_state
 1
 1
 1
+1
+1
 end_state
 begin_goal
-3
+4
 83 0
 84 0
-86 0
+87 0
+88 0
 end_goal
-203
+210
 begin_operator
 build_building worker1 worker barracks1 loc2
 2
@@ -2873,57 +2890,111 @@ move worker1 loc8 loc7
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc2
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc2
 2
 31 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc3
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc3
 2
 34 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc5
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc5
 2
 36 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc6
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc6
 2
 38 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc7
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc7
 2
 40 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
 1
 end_operator
 begin_operator
-train_unit infantry1 light_infantry barracks1 barracks level1 loc8
+train_unit infantry1 heavy_infantry barracks1 barracks level2 loc8
 2
 45 0
-85 0
+86 0
 1
-0 86 1 0
+0 88 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc2
+2
+31 0
+86 0
+1
+0 87 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc3
+2
+34 0
+86 0
+1
+0 87 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc5
+2
+36 0
+86 0
+1
+0 87 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc6
+2
+38 0
+86 0
+1
+0 87 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc7
+2
+40 0
+86 0
+1
+0 87 1 0
+1
+end_operator
+begin_operator
+train_unit infantry2 heavy_infantry barracks1 barracks level2 loc8
+2
+45 0
+86 0
+1
+0 87 1 0
 1
 end_operator
 begin_operator
@@ -3041,6 +3112,15 @@ train_unit worker1 worker base1 base level1 loc2
 2
 0 72 -1 0
 0 78 1 0
+1
+end_operator
+begin_operator
+upgrade_building barracks1 tech_facility1 barracks tech_facility level1 level2
+2
+85 0
+81 0
+1
+0 86 1 0
 1
 end_operator
 begin_operator
