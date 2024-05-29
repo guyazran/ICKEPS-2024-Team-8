@@ -1,4 +1,4 @@
-(define (problem problem1)
+(define (problem p4)
     (:domain rts_game)
     (:objects
         base_1 - base
@@ -7,7 +7,7 @@
         tank_factory_1 - tank_factory
         worker_1 - worker
         light_infantry_1 - light_infantry
-        heavy_infantry_1 - heavy_infantry
+        heavy_infantry_1 heavy_infantry_2 - heavy_infantry
         tank_1 - tank
         siege_tank_1 - siege_tank
     )
@@ -17,6 +17,9 @@
     )
 
     (:goal (and
-        (trained light_infantry_1)
+        (trained heavy_infantry_1)
+        (trained heavy_infantry_2)
+        (trained tank_1)
+        (trained siege_tank_1)
     ))
 )

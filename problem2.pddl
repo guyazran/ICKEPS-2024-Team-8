@@ -1,4 +1,4 @@
-(define (problem problem1)
+(define (problem p2)
     (:domain rts_game)
     (:objects
         base_1 - base
@@ -18,5 +18,6 @@
 
     (:goal (and
         (trained light_infantry_1)
+        (trained tank_1)
     ))
 )
