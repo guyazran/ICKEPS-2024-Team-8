@@ -1,12 +1,15 @@
 (define (problem rts1)
     (:domain rts)
     (:objects
-        base - btype
-        worker - utype
-        light_infantry - utype
-        barracks - btype
+        base - building_type
+        barracks - building_type
+
         base1 - building
         barracks1 - building
+
+        worker - unit_type
+        light_infantry - unit_type
+
         worker1 - unit
         infantry1 - unit
 
@@ -14,10 +17,10 @@
         null_building - building
     )
     (:init
-        (unit_type worker1, worker)
-        (unit_type infantry1, light_infantry)
-        (building_type base1, base)
-        (building_type barracks1, barracks)
+        (utype worker1, worker)
+        (utype infantry1, light_infantry)
+        (btype base1, base)
+        (btype barracks1, barracks)
 
         (produces base1, worker)
         (produces barracks, light_infantry)
