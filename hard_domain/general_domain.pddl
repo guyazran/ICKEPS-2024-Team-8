@@ -1,18 +1,23 @@
 (define (domain rts_game)
-    (:requirements :strips :typing :negative-preconditions)
+    (:requirements :strips :typing :negative-preconditions :disjunctive-preconditions)
 	(:constants 
 		level0 - level_type
-		level1 - level_type)
+		level1 - level_type
+		boggy - soil
+		sand - soil
+		rock - soil
+	)
     (:types 
     	
-        entity entity_type - object
+        entity entity_type soil loc - object
     	building unit level_type - entity
     	building_type unit_type - entity_type
     )
 
     (:predicates  
     	(occupied ?u - unit)
-    	(trained ?u - unit)
+    	(trained_2 ?u - unit)
+    	(trained_1 ?u - unit)
 		(b_level ?b - building ?l - level_type)
     	(builder ?u - unit_type)
         (produces ?u - unit_type ?b - building_type ?l - level_type)
@@ -20,13 +25,17 @@
         (btype ?b - building ?b2 - building_type)
         (upgrades ?b - building_type ?b2 - building_type)
         (upgradable ?b - building_type ?l - level_type)
+        (soil ?t - type ?x - loc)
+        (at ?u - entity ?x - loc)
     )
 
     (:action train_unit
-	     :parameters (?u - unit ?ut - unit_type ?b - building ?bt - building_type ?l - level_type)
+	     :parameters (?u - unit ?ut - unit_type ?b - building ?bt - building_type ?l - level_type ?x - loc)
 	     :precondition (and
 	     	; Unit not trained
-	         (not (trained ?u))
+	         (not (trained_2 ?u))
+	         (at ?b ?x)
+
 	         
 	        ;  building is of sufficient level to train
 	         (btype ?b ?bt)
@@ -37,22 +46,46 @@
 	     )
 	     :effect (and 
 	     	; Worker is trained
-            (trained ?u)
+            (trained_2 ?u)
+            (at ?u ?x)
+         )
+    )
+    
+     (:action move
+	     :parameters (?u - unit ?x - loc ?x2 - loc)
+	     :precondition (and
+	     	; Unit not trained
+	     	(at ?u ?x2)
+	         (not (at ?u ?x))
+	         (not (soil boggy ?x2))
+	     )
+	     
+	     :effect (and 
+	     	; Worker is trained
+            (at ?u ?x)
+	        (not (at ?u ?x2))
             
          )
     )
 
     (:action build_building
-    	:parameters(?u - unit ?ut - unit_type ?b - building)
+    	:parameters(?u - unit ?ut - unit_type ?b - building ?x - loc)
     	:precondition (and
     		; worker is available
-    		(trained ?u)
     		(utype ?u ?ut)
     		(builder ?ut)
     		(not (occupied ?u))
     		
     		; building is not built
     		(b_level ?b level0)
+    		
+    		(or 
+    			(trained_2 ?u)
+    			(trained_1 ?u)
+			)
+    		
+    		(at ?u ?x)
+    		(soil rock ?x)
 
     	)
     	:effect (and
@@ -62,7 +95,11 @@
     		
     		; worker is occupied
     		(occupied ?u)
+    		
+    		(when (trained_2 ?u) (and (not (trained_2 ?u)) (trained_1 ?u)))
+    		(when (trained_1 ?u) (and (not (trained_1 ?u))))
 
+    		(at ?b ?x)
     	)
     )
     
