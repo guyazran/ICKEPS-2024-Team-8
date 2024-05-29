@@ -37,6 +37,7 @@
 	     :precondition (and
 	     	; Unit not trained
 	         (not (trained_2 ?u))
+	         (not (trained_1 ?u))
 	         (at ?b ?x)
 
 	         
@@ -61,6 +62,7 @@
 	     	(at ?u ?x2)
 	         (not (at ?u ?x))
 	         (not (soil boggy ?x2))
+	        (or (trained_1 ?u) (trained_2 ?u))
 	     )
 	     
 	     :effect (and 
@@ -127,9 +129,16 @@
     		(power ?b2)
     		(not (used_power ?b2))
     		
+    		(forall (?b2 - building)
+				(or 
+					(= ?b2 ?b) 
+					(not (at ?b2 ?x)) 
+				)
+    		)
     		
     		; building is not built
     		(b_level ?b level0)
+    		(b_level ?b2 level1)
     		
     		(or 
     			(trained_2 ?u)
