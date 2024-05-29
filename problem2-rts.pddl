@@ -29,8 +29,9 @@
         (btype base1, base)
         (btype barracks1, barracks)
 
-        (produces base1, worker)
-        (produces barracks, light_infantry)
+        (produces base, worker, level1)
+        (produces barracks, light_infantry, level1)
+        (produces tank_factory, tank, level1)
 
         (next_unit null_unit, worker1)
         (next_unit null_unit, infantry1)
