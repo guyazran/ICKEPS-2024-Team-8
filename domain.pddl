@@ -18,6 +18,7 @@
 	(:action build_building
     	:parameters(?u - worker ?b - building)
     	:precondition (and
+		    (trained ?u)
     		(not (working ?u))
     		(not (built ?b))
     	)
