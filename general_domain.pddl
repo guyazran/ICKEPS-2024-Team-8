@@ -72,6 +72,7 @@
     	:parameters(?b - building ?t - building ?l - level ?l2 - level_type)
     	:precondition (and
     		(b_level ?b ?l)
+    		(not (b_level ?b ?l2))
     		(upgrades ?b ?t)
     		(upgradable ?b ?l2)
     		(next ?l ?l2)
