@@ -1,5 +1,5 @@
 (define (problem rts1)
-    (:domain rts)
+    (:domain rts_game)
     (:objects
         base - building_type
         barracks - building_type
