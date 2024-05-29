@@ -49,9 +49,9 @@
         (produces worker, base, level1)
         (produces light_infantry, barracks, level1)
 
-        (next null_unit, worker1)
-        (next null_unit, infantry1)
-        (next null_unit, tank1)
+        (produces worker base level1)
+        (produces light_infantry barracks level1)
+        (produces tank tank_factory level1)
 
         (current null_unit worker)
         (current null_unit light_infantry)
