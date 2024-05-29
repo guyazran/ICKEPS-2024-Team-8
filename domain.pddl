@@ -1,10 +1,10 @@
 (define (domain rts_game)
-    (:requirements :strips :typing ::negative-preconditions ::existential-preconditions)
+    (:requirements :strips :typing :negative-preconditions :existential-preconditions)
     (:types 
         building unit - object
         base tech_facility upgradable_building - building
         barracks tank_factory - upgradable_building
-        worker light_infantry heavy_infantry tank siege_tank - units
+        worker light_infantry heavy_infantry tank siege_tank - unit
     )
 
     (:predicates  
@@ -15,11 +15,34 @@
         (level2 ?x - building)
     )
 
+	(:action build_building
+    	:parameters(?u - worker ?b - building)
+    	:precondition (and
+    		(not (working ?u))
+    		(not (built ?b))
+    	)
+    	:effect (and
+    		(built ?b)
+			(level1 ?b)
+    		(working ?u)
+    	)
+    )
+    
+	(:action finish_occupied
+    	:parameters(?u - worker)
+    	:precondition (and
+    		(working ?u)
+    	)
+    	:effect (and
+    		(not (working ?u))
+    	)
+    )
+
     (:action train_worker
 	     :parameters (?u - worker)
 	     :precondition (and
 	         (not (trained ?u))
-	         (exists (?b - base) (build ?b))
+	         (exists (?b - base) (built ?b))
 	     )
 	     :effect
 	     (and 
@@ -30,7 +53,7 @@
 	     :parameters (?u - light_infantry)
 	     :precondition (and
 	         (not (trained ?u))
-	         (exists (?b - barracks) (build ?b))
+	         (exists (?b - barracks) (built ?b))
 	     )
 	     :effect
 	     (and 
@@ -43,10 +66,10 @@
 	         (not (trained ?u))
 	         (exists (?b - base) 
 	         (and 
-	             (build ?b)
+	             (built ?b)
 	             (level2 ?b)
 	        )
-	     )
+	     ))
 	     :effect
 	     (and 
             (trained ?u)
@@ -56,7 +79,7 @@
 	     :parameters (?u - tank)
 	     :precondition (and
 	         (not (trained ?u))
-	         (exists (?b - tank_factory) (build ?b))
+	         (exists (?b - tank_factory) (built ?b))
 	     )
 	     :effect
 	     (and 
@@ -69,10 +92,10 @@
 	         (not (trained ?u))
 	         (exists (?b - tank_factory) 
 	            (and 
-	                (build ?b)
+	                (built ?b)
 	                (level2 ?b)
 	            )
-	     )
+	     ))
 	     :effect
 	     (and 
             (trained ?u)
@@ -90,3 +113,4 @@
             (level2 ?b)
          )
     )
+)
