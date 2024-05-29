@@ -21,12 +21,13 @@
     )
 
     (:action train_unit
-	     :parameters (?ut - unit_type ?b - building_type ?u - unit ?u2 - unit ?l - level)
+	     :parameters (?ut - unit_type ?b - building ?b2 - building_type ?u - unit ?u2 - unit ?l - level)
 	     :precondition (and
 	         (not (trained ?u))
 	         (b_level ?b LEVEL0)
+	         (btype ?b ?b2)
 	         (utype ?u ?ut)
-	         (produces ?ut ?b ?l)
+	         (produces ?ut ?b2 ?l)
 	         (current ?u2)
 	         (next ?u2 ?u)
 	     )
