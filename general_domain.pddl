@@ -9,7 +9,6 @@
     (:predicates  
     	(occupied ?u - unit)
     	(trained ?u - unit)
-    	(built ?b - building)
     	(b_level ?b - building ?l - level)
     	(builder ?u - unit_type)
         (produces ?u - unit_type ?b - building_type ?l - level)
@@ -24,9 +23,9 @@
 	     :parameters (?ut - unit_type ?b - building_type ?u - unit ?u2 - unit)
 	     :precondition (and
 	         (not (trained ?u))
+	         (b_level ?b LEVEL0)
 	         (utype ?u ?ut)
 	         (produces ?ut ?b)
-	         (built ?b)
 	         (current ?u2)
 	         (next ?u2 ?u)
 	     )
@@ -34,6 +33,7 @@
             (trained ?u)
             (not (current ?u2))
             (current ?u)
+            (b_level ?b LEVEL1)
          )
     )
 
