@@ -41,6 +41,8 @@
 
         (next null_building, barracks1)
 
+        (next level0, level1)
+
         (level base1, level1)
         (level barracks1, level0)
     )
