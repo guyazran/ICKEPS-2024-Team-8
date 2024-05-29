@@ -92,15 +92,25 @@
     (:action upgrade_building
     	:parameters(?b - building ?t - building ?bt - building_type ?tt - building_type ?l - level_type ?l2 - level_type)
     	:precondition (and
+    		; building is ulevelx and not levelx + 1
     		(b_level ?b ?l)
     		(not (b_level ?b ?l2))
+    		
+    		; buildings are of the right type
     		(btype ?b ?bt)
     		(btype ?t ?tt)
+    		
+    		; building tt upgrades bt
     		(upgrades ?bt ?tt)
+    		
+    		; building bt can be upgraded
     		(upgradable ?bt ?l2)
+    		
+    		; level precedence
     		(next ?l ?l2)
     	)
     	:effect (and
+    		; next building level
     		(b_level ?b ?l2)
     	)
     )
