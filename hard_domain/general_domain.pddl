@@ -28,6 +28,7 @@
 	         (not (trained ?u))
 	         (btype ?b ?b2)
 	         (utype ?u ?ut)
+	         (b_level ?b ?l)
 	         (produces ?ut ?b2 ?l)
 	         (current ?u2 ?ut)
 	         (next ?u2 ?u)
