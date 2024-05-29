@@ -1,14 +1,14 @@
 (define (domain rts_game)
     (:requirements :strips :typing :negative-preconditions)
 
-    (:types 
-    	
+    (:types
+
         entity entity_type - object
     	building unit level_type - entity
     	building_type unit_type - entity_type
     )
 
-    (:predicates  
+    (:predicates
     	(occupied ?u - unit)
     	(trained ?u - unit)
     	(b_level ?b - building ?l - level_type)
@@ -32,7 +32,7 @@
 	         (current ?u2 ?ut)
 	         (next ?u2 ?u)
 	     )
-	     :effect (and 
+	     :effect (and
             (trained ?u)
             (not (current ?u2 ?ut))
             (current ?u ?ut)
@@ -58,7 +58,7 @@
             (current ?b ?bt)
     	)
     )
-    
+
 	(:action finish_occupied
     	:parameters(?u - unit)
     	:precondition (and
@@ -68,7 +68,7 @@
     		(not (occupied ?u))
     	)
     )
-    
+
     (:action upgrade_building
     	:parameters(?b - building ?t - building ?bt - building_type ?tt - building_type ?l - level_type ?l2 - level_type)
     	:precondition (and
