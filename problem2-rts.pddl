@@ -25,9 +25,17 @@
     (:init
         (utype worker1, worker)
         (utype infantry1, light_infantry)
+        (utype tank1, tank)
+        (utype null_unit, worker)
+        (utype null_unit, light_infantry)
+        (utype null_unit, tank)
 
         (btype base1, base)
         (btype barracks1, barracks)
+        (btype tank_factory1, tank_factory)
+        (btype null_building, base)
+        (btype null_building, barracks)
+        (btype null_building, tank_factory)
 
         (produces base, worker, level1)
         (produces barracks, light_infantry, level1)
