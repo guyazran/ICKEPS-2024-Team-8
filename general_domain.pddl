@@ -42,7 +42,7 @@
     (:action build_building
     	:parameters(?u - unit ?u2 - unit_type ?b - building ?b2 - building)
     	:precondition (and
-    		(type ?u ?u2)
+    		(utype ?u ?u2)
     		(builder ?u2)
     		(not (occupied ?u))
     		(not (built ?b))
