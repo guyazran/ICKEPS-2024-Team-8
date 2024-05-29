@@ -8,6 +8,7 @@
 
     (:predicates  
     	(occupied ?u - unit)
+    	(trained ?u - unit)
     	(built ?b - building)
         (produces ?u - unit_type ?b - building_type)
         (utype ?u - unit ?u2 - unit_type)
@@ -16,33 +17,41 @@
         (level1 ?b - building)
         (level2 ?b - building)
         (next ?o - entity)
-        (count ?o - entity)
+        (current ?o - entity)
     )
 
     (:action train_unit
-	     :parameters (?ut - unit_type ?b - building_type ?u - unit)
+	     :parameters (?ut - unit_type ?b - building_type ?u - unit ?u2 - unit)
 	     :precondition (and
 	         (not (trained ?u))
 	         (utype ?u ?ut)
 	         (produces ?ut ?b)
 	         (built ?b)
+	         (current ?u2)
+	         (next ?u2 ?u)
 	     )
 	     :effect (and 
             (trained ?u)
+            (not (current ?u2))
+            (current ?u)
          )
     )
 
     (:action build_building
-    	:parameters(?u - unit ?b - building)
+    	:parameters(?u - unit ?b - building ?b2 - building)
     	:precondition (and
     		(type ?u worker)
     		(not (occupied ?u))
     		(not (built ?b))
+    		(current ?b2)
+	        (next ?b2 ?b)
     	)
     	:effect (and
     		(built ?b)
     		(when (upgradable ?b) (level1 ?b))
     		(occupied ?u)
+    		(not (current ?b2))
+            (current ?b)
     	)
     )
     
