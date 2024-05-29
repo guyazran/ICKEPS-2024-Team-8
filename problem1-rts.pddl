@@ -21,9 +21,13 @@
     (:init
         (utype worker1, worker)
         (utype infantry1, light_infantry)
+        (utype null_unit, worker)
+        (utype null_unit, light_infantry)
 
         (btype base1, base)
         (btype barracks1, barracks)
+        (btype null_building, base)
+        (btype null_building, barracks)
 
         (blevel base1, level1)
         (blevel barracks1, level1)
@@ -31,10 +35,10 @@
         (produces base, worker, level1)
         (produces barracks, light_infantry, level1)
 
-        (next_unit null_unit, worker1)
-        (next_unit null_unit, infantry1)
+        (next null_unit, worker1)
+        (next null_unit, infantry1)
 
-        (next_building null_building, barracks1)
+        (next null_building, barracks1)
 
         (built base1)
     )
