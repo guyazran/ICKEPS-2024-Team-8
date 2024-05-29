@@ -1,4 +1,4 @@
-(define (problem rts1)
+(define (problem rts2)
     (:domain rts)
     (:objects
         base - building_type
