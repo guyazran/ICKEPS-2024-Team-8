@@ -68,7 +68,7 @@
     )
     
     (:action upgrade_building
-    	:parameters(?b - building ?t - building ?l - level ?l2 - level_type)
+    	:parameters(?b - building ?t - building ?l - level_type ?l2 - level_type)
     	:precondition (and
     		(b_level ?b ?l)
     		(not (b_level ?b ?l2))
