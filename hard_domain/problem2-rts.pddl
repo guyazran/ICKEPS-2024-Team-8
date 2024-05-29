@@ -1,5 +1,5 @@
 (define (problem rts2)
-    (:domain rts)
+    (:domain rts_game)
     (:objects
         base - building_type
         barracks - building_type
@@ -17,6 +17,7 @@
         infantry1 - unit
         tank1 - unit
 
+        level0 - level_type
         level1 - level_type
 
         null_unit - unit
@@ -26,6 +27,7 @@
         (utype worker1, worker)
         (utype infantry1, light_infantry)
         (utype tank1, tank)
+
         (utype null_unit, worker)
         (utype null_unit, light_infantry)
         (utype null_unit, tank)
@@ -33,26 +35,35 @@
         (btype base1, base)
         (btype barracks1, barracks)
         (btype tank_factory1, tank_factory)
+
         (btype null_building, base)
         (btype null_building, barracks)
         (btype null_building, tank_factory)
 
-        (produces base, worker, level1)
-        (produces barracks, light_infantry, level1)
-        (produces tank_factory, tank, level1)
+        (b_level base1, level1)
+        (b_level barracks1, level0)
+        (b_level tank_factory1, level0)
+
+        (builder worker)
+
+        (produces worker, base, level1)
+        (produces light_infantry, barracks, level1)
 
         (next null_unit, worker1)
         (next null_unit, infantry1)
         (next null_unit, tank1)
 
+        (current null_unit worker)
+        (current null_unit light_infantry)
+        (current null_unit tank)
+
         (next null_building, barracks1)
-        (next null_building, tank_factory1)
 
-        (blevel base1, level1)
-        (blevel barracks1, level1)
-        (blevel tank_factory1, level1)
+        (current null_building barracks)
+        (current null_building tank_factory)
+        (current base1 base)
 
-        (built base1)
+        (next level0, level1)
     )
 
     (:goal (and
