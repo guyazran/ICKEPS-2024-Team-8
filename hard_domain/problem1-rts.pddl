@@ -13,9 +13,6 @@
         worker1 - unit
         infantry1 - unit
 
-        level0 - level_type
-        level1 - level_type
-
         null_unit - unit
         null_building - building
     )
