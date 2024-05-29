@@ -65,7 +65,7 @@
 	     :parameters (?u - heavy_infantry)
 	     :precondition (and
 	         (not (trained ?u))
-	         (exists (?b - base) 
+	         (exists (?b - barracks) 
 	         (and 
 	             (built ?b)
 	             (level2 ?b)
