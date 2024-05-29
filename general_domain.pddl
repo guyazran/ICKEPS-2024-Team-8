@@ -13,10 +13,10 @@
         (produces ?u - unit_type ?b - building_type)
         (utype ?u - unit ?u2 - unit_type)
         (btype ?b - building ?b2 - building_type)
-        (upgradable ?b - building)
+        (upgradable ?b - building_type ?b2 building_type)
         (level1 ?b - building)
         (level2 ?b - building)
-        (next ?o - entity)
+        (next ?o - entity ?o2 - entity)
         (current ?o - entity)
     )
 
@@ -40,7 +40,7 @@
     (:action build_building
     	:parameters(?u - unit ?b - building ?b2 - building)
     	:precondition (and
-    		(type ?u worker)
+    		(type ?u WORKER)
     		(not (occupied ?u))
     		(not (built ?b))
     		(current ?b2)
@@ -70,7 +70,7 @@
     	:precondition (and
     		(level1 ?b)
     		(built ?t)
-    		(btype ?t tech_facility)
+    		(upgradable ?b ?t)
     	)
     	:effect (and
     		(level2 ?t)
