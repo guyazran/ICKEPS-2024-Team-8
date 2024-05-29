@@ -30,6 +30,7 @@
         (power ?b - building)
         (need_power ?b - building)
         (used_power ?b - building)
+        (next ?l1 ?l2 - level_type)
     )
 
     (:action train_unit
@@ -177,10 +178,11 @@
     )
     
     (:action upgrade_building
-    	:parameters(?b - building ?t - building ?bt - building_type ?tt - building_type ?l - level_type ?l2 - level_type)
+    	:parameters(?b - building ?t - building ?bt - building_type ?tt - building_type ?l1 - level_type ?l2 - level_type)
     	:precondition (and
     		; building is levelx and not levelx + 1
-    		(b_level ?b ?l)
+    		(b_level ?b ?l1)
+			(next ?l1 ?l2)
     		(not (b_level ?b ?l2))
     		
     		; buildings are of the right type
