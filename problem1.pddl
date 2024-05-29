@@ -1,4 +1,4 @@
-(define (problem 1)
+(define (problem problem1)
     (:domain rts_game)
     (:objects
         base_1 - base

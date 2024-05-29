@@ -3,20 +3,19 @@
 
     (:types 
         entity building_type unit_type - object
-    	building unit - entity
+    	building unit level - entity
     )
 
     (:predicates  
     	(occupied ?u - unit)
     	(trained ?u - unit)
     	(built ?b - building)
+    	(b_level ?b - building ?l - level)
     	(builder ?u - unit_type)
-        (produces ?u - unit_type ?b - building_type)
+        (produces ?u - unit_type ?b - building_type ?l - level)
         (utype ?u - unit ?u2 - unit_type)
         (btype ?b - building ?b2 - building_type)
-        (upgradable ?b - building_type ?b2 building_type)
-        (level1 ?b - building)
-        (level2 ?b - building)
+        (upgradable ?b - building_type ?b2 - building_type)
         (next ?o - entity ?o2 - entity)
         (current ?o - entity)
     )
@@ -68,14 +67,15 @@
     )
     
     (:action upgrade_building
-    	:parameters(?b - building ?t - building)
+    	:parameters(?b - building ?t - building ?l - level ?l2 - level)
     	:precondition (and
-    		(level1 ?b)
+    		(b_level ?b ?l)
     		(built ?t)
     		(upgradable ?b ?t)
+    		(next ?l ?l2)
     	)
     	:effect (and
-    		(level2 ?t)
+    		(level2 ?t ?l2)
     	)
     )
 )
