@@ -35,8 +35,8 @@
 
         (builder worker)
 
-        (produces base, worker, level1)
-        (produces barracks, light_infantry, level1)
+        (produces worker, base, level1)
+        (produces light_infantry, barracks, level1)
 
         (next null_unit, worker1)
         (next null_unit, infantry1)
