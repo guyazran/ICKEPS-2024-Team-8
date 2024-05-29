@@ -14,7 +14,8 @@
         (produces ?u - unit_type ?b - building_type ?l - level)
         (utype ?u - unit ?u2 - unit_type)
         (btype ?b - building ?b2 - building_type)
-        (upgradable ?b - building_type ?b2 - building_type)
+        (upgrades ?b - building_type ?b2 - building_type)
+        (upgradable ?b - building_type ?l -level)
         (next ?o - entity ?o2 - entity)
         (current ?o - entity)
     )
@@ -71,7 +72,8 @@
     	:precondition (and
     		(b_level ?b ?l)
     		(built ?t)
-    		(upgradable ?b ?t)
+    		(upgrades ?b ?t)
+    		(upgradable ?b ?l)
     		(next ?l ?l2)
     	)
     	:effect (and
