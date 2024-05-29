@@ -2,8 +2,10 @@
     (:requirements :strips :typing :negative-preconditions)
 
     (:types 
-        entity building_type unit_type - object
+    	
+        entity entity_type - object
     	building unit level_type - entity
+    	building_type unit_type - entity_type
     )
 
     (:predicates  
@@ -17,7 +19,7 @@
         (upgrades ?b - building_type ?b2 - building_type)
         (upgradable ?b - building_type ?l - level_type)
         (next ?o - entity ?o2 - entity)
-        (current ?o - entity)
+        (current ?o - entity ?)
     )
 
     (:action train_unit
@@ -27,33 +29,33 @@
 	         (btype ?b ?b2)
 	         (utype ?u ?ut)
 	         (produces ?ut ?b2 ?l)
-	         (current ?u2)
+	         (current ?u2 ?ut)
 	         (next ?u2 ?u)
 	     )
 	     :effect (and 
             (trained ?u)
-            (not (current ?u2))
-            (current ?u)
+            (not (current ?u2 ?ut))
+            (current ?u ?ut)
             (b_level ?b level1)
          )
     )
 
     (:action build_building
-    	:parameters(?u - unit ?u2 - unit_type ?b - building ?b2 - building)
+    	:parameters(?u - unit ?u2 - unit_type ?b - building ?b2 - building ?bt - building_type)
     	:precondition (and
     		(utype ?u ?u2)
     		(builder ?u2)
     		(not (occupied ?u))
     		(b_level ?b level0)
-    		(current ?b2)
+    		(current ?b2 ?bt)
 	        (next ?b2 ?b)
     	)
     	:effect (and
     		(not (b_level ?b level0))
     		(b_level ?b level1)
     		(occupied ?u)
-    		(not (current ?b2))
-            (current ?b)
+    		(not (current ?b2 ?bt))
+            (current ?b ?bt)
     	)
     )
     
@@ -68,11 +70,13 @@
     )
     
     (:action upgrade_building
-    	:parameters(?b - building ?t - building ?l - level_type ?l2 - level_type)
+    	:parameters(?b - building ?t - building ?bt - building_type ?tt - building_type ?l - level_type ?l2 - level_type)
     	:precondition (and
     		(b_level ?b ?l)
     		(not (b_level ?b ?l2))
-    		(upgrades ?b ?t)
+    		(btype ?b ?bt)
+    		(btype ?t ?t2)
+    		(upgrades ?bt ?tt)
     		(upgradable ?b ?l2)
     		(next ?l ?l2)
     	)
