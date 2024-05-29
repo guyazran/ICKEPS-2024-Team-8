@@ -28,8 +28,8 @@
         (blevel base1, level1)
         (blevel barracks1, level1)
 
-        (produces base, worker)
-        (produces barracks, light_infantry)
+        (produces base, worker, level1)
+        (produces barracks, light_infantry, level1)
 
         (next_unit null_unit, worker1)
         (next_unit null_unit, infantry1)
