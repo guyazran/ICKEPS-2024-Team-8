@@ -19,7 +19,7 @@
         (upgrades ?b - building_type ?b2 - building_type)
         (upgradable ?b - building_type ?l - level_type)
         (next ?o - entity ?o2 - entity)
-        (current ?o - entity ?)
+        (current ?o - entity ?o2 - entity_type)
     )
 
     (:action train_unit
