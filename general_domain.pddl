@@ -50,7 +50,6 @@
 	        (next ?b2 ?b)
     	)
     	:effect (and
-    		(built ?b)
     		(when (upgradable ?b) (level1 ?b))
     		(occupied ?u)
     		(not (current ?b2))
