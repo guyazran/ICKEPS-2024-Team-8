@@ -13,6 +13,7 @@
         worker1 - unit
         infantry1 - unit
 
+        level0 - level_type
         level1 - level_type
 
         null_unit - unit
@@ -40,7 +41,8 @@
 
         (next null_building, barracks1)
 
-        (built base1)
+        (level base1, level1)
+        (level barracks1, level0)
     )
 
     (:goal (and
