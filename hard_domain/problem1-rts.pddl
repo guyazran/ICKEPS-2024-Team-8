@@ -30,8 +30,10 @@
         (btype null_building, base)
         (btype null_building, barracks)
 
-        (blevel base1, level1)
-        (blevel barracks1, level1)
+        (b_level base1, level1)
+        (b_level barracks1, level0)
+
+        (builder worker)
 
         (produces base, worker, level1)
         (produces barracks, light_infantry, level1)
