@@ -75,7 +75,7 @@
     		(b_level ?b ?l)
     		(not (b_level ?b ?l2))
     		(btype ?b ?bt)
-    		(btype ?t ?t2)
+    		(btype ?t ?tt)
     		(upgrades ?bt ?tt)
     		(upgradable ?b ?l2)
     		(next ?l ?l2)
