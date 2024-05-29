@@ -74,7 +74,7 @@
     		(b_level ?b ?l)
     		(built ?t)
     		(upgrades ?b ?t)
-    		(upgradable ?b ?l)
+    		(upgradable ?b ?l2)
     		(next ?l ?l2)
     	)
     	:effect (and
